@@ -1,29 +1,40 @@
-const Task = require('../models/task')
+const Task = require('../models/task');
 
-const getTasks = async () => {
+const getTasksService = async () => {
   const tasks = await Task.find();
 
   return tasks;
 }
 
-const createTask = async (text) => {
+const createTaskService = async (text) => {
   const newTask = new Task({ text });
-  const savedTask = await newTask.save()
+  const savedTask = await newTask.save();
 
   return savedTask;
 }
 
-const deleteTask = async (id) => {
-  await Task.findByIdAndDelete(id)
+const deleteTaskService = async (id) => {
+  const deletedTask = await Task.findByIdAndDelete(id);
+
+  return deletedTask;
 }
 
-const updateTask = async (id, isCheck) => {
-  await Task.findByIdAndUpdate(id, { isCheck })
+const deleteAllTasksService = async () => {
+  const response = await Task.deleteMany()
+
+  return response;
+}
+
+const updateTaskService = async (id, body) => {
+  const updatedTask = await Task.findByIdAndUpdate(id, body);
+
+  return updatedTask; 
 }
 
 module.exports = {
-  getTasks,
-  createTask,
-  deleteTask,
-  updateTask,
+  getTasksService,
+  createTaskService,
+  deleteTaskService,
+  updateTaskService,
+  deleteAllTasksService
 }
