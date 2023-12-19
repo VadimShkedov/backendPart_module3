@@ -20,19 +20,19 @@ const deleteTaskService = async (id) => {
 }
 
 const deleteAllTasksService = async () => {
-  const response = await Task.deleteMany()
+  const response = await Task.deleteMany();
 
   return response;
 }
 
-const updateTextTaskService = async (id, value) => {
-  const updatedTask = await Task.findByIdAndUpdate(id, { text: value });
+const updateTextTaskService = async (id, text) => {
+  const updatedTask = await Task.findByIdAndUpdate(id, { text });
 
   return updatedTask; 
 }
 
-const updateCheckboxTaskService = async (id, value) => {
-  const updatedTask = await Task.findByIdAndUpdate(id, { isCheck: value });
+const updateCheckboxTaskService = async (id, isCheck) => {
+  const updatedTask = await Task.findByIdAndUpdate(id, { isCheck });
 
   return updatedTask; 
 }

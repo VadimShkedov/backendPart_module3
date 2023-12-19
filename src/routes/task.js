@@ -8,15 +8,15 @@ const {
   updateTaskCheckbox,
   deleteAllTasks
 } = require('../controllers/task-controllers');
-const { textValidation } = require('../middlewares/task-validation');
+const { textValidation, checkboxValidation } = require('../middlewares/task-validation');
 
 const router = express.Router();
 
 router.get('/tasks', getAllTasks);
 router.post('/tasks', textValidation, createOneTask);
-router.delete('/tasks/all', deleteAllTasks);
-router.delete('/tasks/one/:id', deleteTaskById);
+router.delete('/tasks', deleteAllTasks);
+router.delete('/tasks/:id', deleteTaskById);
 router.patch('/tasks/text', textValidation, updateTaskText);
-router.patch('/tasks/checkbox', updateTaskCheckbox);
+router.patch('/tasks/checkbox', checkboxValidation, updateTaskCheckbox);
 
 module.exports = router;

@@ -31,9 +31,10 @@ const createOneTask = async (req, res) => {
 const deleteTaskById = async (req, res) => {
   try {
     const { id } = req.params;
+    console.log(id);
     const deletedTask = await deleteTaskService(id);
 
-    res.status(200).json(deletedTask)
+    res.status(200).json(deletedTask);
   } catch (error) {
     res.status(400).send("Ошибка при удалении задачи");
   }
@@ -43,9 +44,9 @@ const deleteAllTasks = async (req, res) => {
   try {
     const response = await deleteAllTasksService();
 
-    res.status(200).json(response)
+    res.status(200).json(response);
   } catch (error) {
-    res.status(400).send("Ошибка при удалении всех задач")
+    res.status(400).send("Ошибка при удалении всех задач");
   }
 }
 
@@ -56,7 +57,6 @@ const updateTaskText = async (req, res) => {
 
     res.status(200).json(updatedTask);
   } catch (error) {
-    console.log(error);
     res.status(400).send("Ошибка при обновлении текста задачи");
   }
 }
@@ -65,9 +65,10 @@ const updateTaskCheckbox = async (req, res) => {
   try {
     const { id, isCheck } = req.body;
     const updatedTask = await updateCheckboxTaskService(id, isCheck);
-  
+
     res.status(200).json(updatedTask);
   } catch (error) {
+    console.log(error);
     res.status(400).send("Ошибка при обновлении чекбокса задачи");
   }  
 }
