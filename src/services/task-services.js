@@ -25,8 +25,14 @@ const deleteAllTasksService = async () => {
   return response;
 }
 
-const updateTaskService = async (id, body) => {
-  const updatedTask = await Task.findByIdAndUpdate(id, body);
+const updateTextTaskService = async (id, value) => {
+  const updatedTask = await Task.findByIdAndUpdate(id, { text: value });
+
+  return updatedTask; 
+}
+
+const updateCheckboxTaskService = async (id, value) => {
+  const updatedTask = await Task.findByIdAndUpdate(id, { isCheck: value });
 
   return updatedTask; 
 }
@@ -35,6 +41,7 @@ module.exports = {
   getTasksService,
   createTaskService,
   deleteTaskService,
-  updateTaskService,
+  updateTextTaskService,
+  updateCheckboxTaskService,
   deleteAllTasksService
 }

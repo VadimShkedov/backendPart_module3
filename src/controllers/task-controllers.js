@@ -2,7 +2,8 @@ const {
   getTasksService,
   createTaskService,
   deleteTaskService,
-  updateTaskService,
+  updateTextTaskService,
+  updateCheckboxTaskService,
   deleteAllTasksService
 } = require('../services/task-services');
 
@@ -48,22 +49,34 @@ const deleteAllTasks = async (req, res) => {
   }
 }
 
-const updateTask = async (req, res) => {
+const updateTaskText = async (req, res) => {
   try {
-    const { id, ...body } = req.body;
-    const updatedTask = await updateTaskService(id, body);
+    const { id, text } = req.body;
+    const updatedTask = await updateTextTaskService(id, text);
 
     res.status(200).json(updatedTask);
   } catch (error) {
     console.log(error);
-    res.status(400).send("Ошибка при обновлении задачи");
+    res.status(400).send("Ошибка при обновлении текста задачи");
   }
+}
+
+const updateTaskCheckbox = async (req, res) => {
+  try {
+    const { id, isCheck } = req.body;
+    const updatedTask = await updateCheckboxTaskService(id, isCheck);
+  
+    res.status(200).json(updatedTask);
+  } catch (error) {
+    res.status(400).send("Ошибка при обновлении чекбокса задачи");
+  }  
 }
 
 module.exports = { 
   getAllTasks,
   createOneTask, 
   deleteTaskById, 
-  updateTask, 
-  deleteAllTasks 
+  updateTaskText,
+  updateTaskCheckbox, 
+  deleteAllTasks
 }
