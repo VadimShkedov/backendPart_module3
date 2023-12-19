@@ -68,7 +68,6 @@ const updateTaskCheckbox = async (req, res) => {
 
     res.status(200).json(updatedTask);
   } catch (error) {
-    console.log(error);
     res.status(400).send("Ошибка при обновлении чекбокса задачи");
   }  
 }
