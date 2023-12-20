@@ -15,7 +15,7 @@ const startApp = async () => {
   try {
     await mongoose.connect(DB_CONNECTION); 
 
-    app.listen(PORT, () => console.log(`Запущен на ${process.env.PORT}`));
+    app.listen(PORT, () => console.log(`Запущен на ${PORT}`));
   } catch (error) {
     console.error(error);
     process.exit(1);

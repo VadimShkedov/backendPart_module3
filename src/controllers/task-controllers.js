@@ -31,7 +31,6 @@ const createOneTask = async (req, res) => {
 const deleteTaskById = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log(id);
     const deletedTask = await deleteTaskService(id);
 
     res.status(200).json(deletedTask);
@@ -52,7 +51,8 @@ const deleteAllTasks = async (req, res) => {
 
 const updateTaskText = async (req, res) => {
   try {
-    const { id, text } = req.body;
+    const { text } = req.body;
+    const { id } = req.params;
     const updatedTask = await updateTextTaskService(id, text);
 
     res.status(200).json(updatedTask);
@@ -63,7 +63,8 @@ const updateTaskText = async (req, res) => {
 
 const updateTaskCheckbox = async (req, res) => {
   try {
-    const { id, isCheck } = req.body;
+    const { isCheck } = req.body;
+    const { id } = req.params;
     const updatedTask = await updateCheckboxTaskService(id, isCheck);
 
     res.status(200).json(updatedTask);
